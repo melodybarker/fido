@@ -1,0 +1,178 @@
+{
+"users": [
+  {
+    "id": 1,
+    "name": "Melody Barker",
+    "email": "melb@gmail.com",
+    "password": "123",
+    "location": "Spring Hill, TN"
+  },
+  {
+    "id": 2,
+    "name": "Joey Knight",
+    "email": "joeyk@gmail.com",
+    "password": "123",
+    "locaton": "Franklin, TN"
+  },
+  {
+    "id": 3,
+    "name": "John Hopkins",
+    "email": "johnh@gmail.com",
+    "password": "123",
+    "location": "Nashville, TN"
+  },
+  {
+    "id": 4,
+    "name": "Danny Barker",
+    "email": "dannyb@gmail.com",
+    "password": "123",
+    "location": "Murfreesboro, TN"
+  },
+  {
+    "id": 5,
+    "name": "Emma Johnson",
+    "email": "emmaj@gmail.com",
+    "password": "123",
+    "location": "Brentwood, TN"
+  },
+  {
+  "id": 6,
+  "name": "Michael Swoboda",
+  "email": "michaels@gmail.com",
+  "password": "123",
+  "location": "Franklin, TN"
+  },
+  {
+    "id": 7,
+    "name": "Sam Barker",
+    "email": "samb@gmail.com",
+    "password": "123",
+    "location": "Franklin, TN"
+  }, {
+    "id": 8,
+    "name": "Aye Hayling",
+    "email": "ayeh@gmail.com",
+    "password": "123",
+    "location": "Spring Hill, TN"
+  }
+  ],
+"dogs": [
+  {
+    "id": 1,
+    "currentUserId": 4,
+    "lost": "lost",
+    "url": "https://i.pinimg.com/originals/cd/5c/d8/cd5cd83b62e45497080c01b2ae4f5352.jpg",
+    "name": "Brixton",
+    "gender": "male",
+    "location": "Murfreesboro, TN",
+    "breed": "Pitbull",
+    "date": "08/31/2021",
+    "info": "Brixton should be wearing a blue collar."
+  },
+  {
+    "id": 2,
+    "currentUserId": 2,
+    "lost": "found",
+    "url": "https://i.pinimg.com/originals/00/5c/6a/005c6a58ee2b42467d9f254dbb28328e.jpg",
+    "name": "unknown",
+    "gender": "female",
+    "location": "Franklin, TN",
+    "breed": "Westie",
+    "date": "07/23/2021",
+    "info": "I currently have her at my house. I found her going through my garden. She's very sweet."
+  },
+  {
+    "id": 3,
+    "currentUserId": 7,
+    "lost": "lost",
+    "url": "https://madisonparktimes.com/Images/Images/10976.jpg",
+    "name": "Gypsie",
+    "gender": "female",
+    "location": "Brentwood, TN",
+    "breed": "Blue Heeler",
+    "date": "09/2/2021",
+    "info": "Reward $500. Please find my girl!"
+  },
+  {
+    "id": 4,
+    "currentUserId": 3,
+    "lost": "found",
+    "url": "https://www.goldenretrieverforum.com/attachments/image-jpg.519521/",
+    "name": "Buddy",
+    "gender": "male",
+    "location": "Nashville, TN",
+    "breed": "Golden Retriever",
+    "date": "08/12/2021",
+    "info": "Friendly boy! I found him in our front yard."
+  },
+  {
+    "id": 5,
+    "currentUserId": 1,
+    "lost": "found",
+    "url": "https://i.pinimg.com/originals/3d/3c/30/3d3c303e5c551deed4f95c7ac5131286.jpg",
+    "name": "unknown",
+    "gender": "male",
+    "location": "Spring Hill, TN",
+    "breed": "Dalmatian",
+    "date": "07/03/2021",
+    "info": "I found this cutie at Spring Hill Bark Park."
+  },
+  {
+    "id": 6,
+    "currentUserId": 6,
+    "lost": "lost",
+    "url": "https://s3-prod.dogtopia.com/wp-content/uploads/sites/89/2021/04/GoldenDoodle_whatjunoboutadoodle.jpg",
+    "name": "Frankie",
+    "gender": "male",
+    "location": "Franklin, TN",
+    "breed": "Poodle",
+    "date": "08/07/2021",
+    "info": "He is part golden retriever and poodle mix. He escaped in our Willow Springs neighborhood."
+  },
+  {
+    "id": 7,
+    "currentUserId": 8,
+    "lost":"reunited",
+    "url": "https://media.npr.org/assets/img/2021/04/27/prancer_wide-db59609b5bd96c9e56e4dfe32d198461197880c2.jpg?s=1400",
+    "name": "Chi",
+    "gender": "male",
+    "location": "Murfreesboro, TN",
+    "breed": "Chihuahua",
+    "date": "06/05/2021",
+    "info": "Careful, he likes to bite."
+  },
+  {
+    "id": 8,
+    "currentUserId": 1,
+    "lost": "reunited",
+    "url": "https://i.pinimg.com/564x/ae/20/25/ae2025a7124528e272fc6c45961454dd.jpg",
+    "name": "unkown",
+    "gender": "male",
+    "location": "Spring Hill, TN",
+    "breed": "Jack Russell",
+    "date": "08/25/2021",
+    "info": "10 months old jack russell terrier. Has one big, brown spot on his back."
+  },
+  {
+    "id": 9,
+    "currentUserId": 5,
+    "lost": "lost",
+    "url": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F8d179147-5427-4dd2-b7d3-58bb8aceb2c9.jpg?fit=scale-down&source=next&width=700",
+    "name": "Princess",
+    "gender": "female",
+    "location": "Nashville, TN",
+    "breed": "Grey Hound",
+    "date": "05/29/2020",
+    "info": "She was stolen off my property. Reward $300 if found!"
+  }
+],
+"messages": [
+  {
+    "id": 1,
+    "currentUserId": 1,
+    "userId": 2,
+    "message": "Hey Joey, my neighbor is missing their Westie and she looks at lot like the one you found. Can we come by to see her?"
+  }
+]
+
+}
