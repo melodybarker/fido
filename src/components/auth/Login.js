@@ -26,7 +26,7 @@ export const Login = props => {
         existingUserCheck()
             .then(exists => {
                 if (exists) {
-                    sessionStorage.setItem("fido_customer", exists.id)
+                    sessionStorage.setItem("fido_user", exists.id)
                     history.push("/")
                 }
 

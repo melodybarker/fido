@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {DogContext} from "./DogProvider";
 import "./Dog.css"
 
@@ -6,16 +6,97 @@ import "./Dog.css"
 export const DogList = (props) => {
 
 	const {dogs, getDogs} = useContext(DogContext)
-	let currentUserId = parseInt(sessionStorage.getItem("fido_customer"))
+	const [dog, setDogs] = useState("")
+	const [isLoading, setIsLoading] = useState(false)
+	const [items, setItems] = useState([])
+	const currentUserId = parseInt(sessionStorage.getItem("fido_user"))
 
 	useEffect(() => {
 		console.log("DogList: useEffect - getDogs")
 		getDogs()
 	}, [])
 
+	// filter function
+	const [searchParam] = useState(["breed"])
+	const [filterParam, setFilterParam] = useState(["All"]);
+
+	useEffect (() => {
+		fetch("http://localhost:8088/dogs")
+		.then(res => res.json())
+		.then(result => {
+			setIsLoading(true);
+			setItems(result)
+		})
+	})
+
+	function search(items) {
+		return items.filter((item) => {
+			if (item.breed === filterParam) {
+				return searchParam.some((newItem) => {
+					return (
+						items[newItem]
+						.toString()
+						.toLowerCase()
+						.indexOf(dog.toLowerCase()) > -1
+					)
+				})
+			}
+			if (filterParam === "All") {
+				return searchParam.som((newItem) => {
+					return (
+						item[newItem]
+						.toString()
+						.toLowerCase()
+						.indexOf(dog.toLowerCase()) > -1
+
+					)
+				})
+			}
+		})
+	}
+
+
 	return (
 		<>
-		<h3 className="dogTitle">Missing Dogs</h3>
+		<select onChange={(event) => {
+			setFilterParam(event.target.value)
+		}}
+		className="filter_breed">
+			<option value="All">Filter By Breed</option>
+			<option value="Unknown">Unknown</option>
+			<option value="Australian Shepard">Australian Shepard</option>
+			<option value="Basset Hound">Basset House</option>
+			<option value="Beagle">Beagle</option>
+			<option value="Bernese Mountain Dog">Bernese Mountain Dog</option>
+			<option value="Border Collie">Border Collie</option>
+			<option value="Boston Terrier">Boston Terrier</option>
+			<option value="Bulldog">Bulldoge</option>
+			<option value="Chihuahua">Chihuahua</option>
+			<option value="Chow Chow">Chow Chow</option>
+			<option value="Cocker Spaniel">Cocker Spaniel</option>
+			<option value="Dachshund">Dachshund</option>
+			<option value="Dalmatian">Dalmatian</option>
+			<option value="German Shepherd">German Shepherd</option>
+			<option value="Golden Retriever">Golden Retriever</option>
+			<option value="Great Dane">Great Dane</option>
+			<option value="Grey Hound">Grey Hound</option>
+			<option value="Husky">Husky</option>
+			<option value="Irish Setter">Irish Setter</option>
+			<option value="Jack Russell Terrier">Jack Russell Terrier</option>
+			<option value="Maltese">Maltese</option>
+			<option value="Mix Breed">Mix Breed</option>
+			<option value="Pit Bull">Pit Bull</option>
+			<option value="Poodle">Poodle</option>
+			<option value="Pug">Pug</option>
+			<option value="Rottweiler">Rottweiler</option>
+			<option value="Beagle">Beagle</option>
+			<option value="Beagle">Beagle</option>
+			<option value="Beagle">Beagle</option>
+			<option value="Beagle">Beagle</option>
+			<option value="Beagle">Beagle</option>
+		</select>
+		<span className="focus"></span>
+		<h3 className="dogTitle">Search Missing Dogs</h3>
 		<div className="DogList">
 			{dogs.map(dog => {
 				return (
@@ -44,7 +125,7 @@ export const DogList = (props) => {
 							Info: {dog.info}
 						</div>
 						<div className="currentUser">
-							user: {dog.currentUserId}
+							message user: {dog.currentUserId}
 						</div>
 					</section>
 					)

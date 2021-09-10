@@ -6,7 +6,7 @@ export const DogProvider = (props) => {
 	const [dogs, setDogs] = useState([])
 
 	const getDogs = () => {
-		return fetch("http://localhost:8088/dogs?_expand=user")
+		return fetch("http://localhost:8088/dogs")
 		.then(res => res.json())
 		.then(setDogs)
 	}

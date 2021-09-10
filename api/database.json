@@ -65,7 +65,7 @@
     "name": "Brixton",
     "gender": "male",
     "location": "Murfreesboro, TN",
-    "breed": "Pitbull",
+    "breed": "Pit Bull",
     "date": "08/31/2021",
     "info": "Brixton should be wearing a blue collar."
   },
@@ -145,11 +145,11 @@
     "id": 8,
     "currentUserId": 1,
     "lost": "reunited",
-    "url": "https://i.pinimg.com/564x/ae/20/25/ae2025a7124528e272fc6c45961454dd.jpg",
+    "url": "https://i.pinimg.com/originals/f9/56/90/f95690937e7c39994a87fe541b7715a0.jpg",
     "name": "unkown",
     "gender": "male",
     "location": "Spring Hill, TN",
-    "breed": "Jack Russell",
+    "breed": "Jack Russell Terrier",
     "date": "08/25/2021",
     "info": "10 months old jack russell terrier. Has one big, brown spot on his back."
   },
@@ -171,8 +171,15 @@
     "id": 1,
     "currentUserId": 1,
     "userId": 2,
-    "message": "Hey Joey, my neighbor is missing their Westie and she looks at lot like the one you found. Can we come by to see her?"
+    "message": "Hey Joey, my neighbor is missing their Westie and she looks at lot like the one you found. Can we come by to see her?",
+    "sendDate": "09/05/2021"
+  },
+  {
+    "id": 2,
+    "currentUserId": 1,
+    "userId": 8,
+    "message": "Hello, I found your dog!",
+    "sendDate": "08/11/2021"
   }
 ]
-
 }
