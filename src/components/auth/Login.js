@@ -1,6 +1,6 @@
-import React, { useRef } from "react"
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom"
+import React, { useRef, useState } from "react"
+import { Link, useHistory } from "react-router-dom"
+import {DogList} from "../dogs/DogList"
 import "./Login.css"
 
 export const Login = props => {
@@ -8,6 +8,11 @@ export const Login = props => {
     const password = useRef()
     const existDialog = useRef()
     const history = useHistory()
+    const [show, setShow] = useState(false)
+
+    const showList = () => {
+      setShow(!show)
+    }
 
     const existingUserCheck = () => {
         return fetch(`http://localhost:8088/users?email=${email.current.value}`)
@@ -26,7 +31,7 @@ export const Login = props => {
         existingUserCheck()
             .then(exists => {
                 if (exists) {
-                    sessionStorage.setItem("fido_customer", exists.id)
+                    localStorage.setItem("fido_user", exists.id)
                     history.push("/")
                 }
 
@@ -43,6 +48,7 @@ export const Login = props => {
 	}
 
     return (
+      <>
         <main className="container--login">
             <dialog className="dialog dialog--auth" ref={existDialog}>
                 <div>User does not exist</div>
@@ -52,8 +58,14 @@ export const Login = props => {
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
                     <h1>Fido Alert!</h1>
+
+                    <fieldset>
+                      <button onClick={showList}>Search all missing dogs</button>
+                      </fieldset>
+
                     <fieldset>
                         <label htmlFor="inputEmail"> Email address </label>
+
                         <input ref={email} type="email"
                             id="email"
                             className="form-control"
@@ -71,6 +83,8 @@ export const Login = props => {
                 <Link to="/register">Not a member yet?</Link>
             </section>
         </main>
+        {show ? <><DogList/></> : <></>}
+        </>
     )
 }
 
