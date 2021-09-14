@@ -9,19 +9,19 @@ import { DogForm } from "./components/dogs/DogForm"
 export const ApplicationViews = () => {
 	return (
 		<>
+    <DogProvider>
 		<UserProvider>
 			<Route exact path="/">
 				<UserInfo />
 			</Route>
-		</UserProvider>
 
-		<DogProvider>
-      <Route exact path="/dogs/post">
+      <Route path="/dogs/post">
         <DogForm />
       </Route>
 			<Route exact path="/dogs/search">
 				<DogList />
 			</Route>
+    </UserProvider>
 		</DogProvider>
 		</>
 	)
