@@ -14,7 +14,7 @@ export const DogProvider = (props) => {
 	const addDogs = (dogObj) => {
 		return fetch("http://localhost:8088/dogs", {
 			method: "POST",
-			header: {
+			headers: {
 				"Content-Type": "application/json"
 			},
 			body: JSON.stringify(dogObj)

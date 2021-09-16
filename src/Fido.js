@@ -5,7 +5,6 @@ import { NavBar } from "./components/nav/NavBar";
 import { Login } from "./components/auth/Login";
 import { Register } from "./components/auth/Register";
 import { DogProvider } from "./components/dogs/DogProvider";
-import { DogList } from "./components/dogs/DogList";
 
 export const Fido = () => (
   <>

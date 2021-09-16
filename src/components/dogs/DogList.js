@@ -8,8 +8,14 @@ export const DogList = (props) => {
   const [dog, setDogs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [items, setItems] = useState([]);
+	const [show, setShow] = useState(false)
   const history = useHistory();
   const currentUserId = parseInt(localStorage.getItem("fido_user"));
+
+		const showList = () => {
+			if (currentUserId === parseInt(dog.currentUserId)) {
+      setShow(!show)
+    }}
 
   useEffect(() => {
     console.log("DogList: useEffect - getDogs");
@@ -54,6 +60,7 @@ export const DogList = (props) => {
 
   return (
     <>
+		<fieldset className="DogListForm">
       <select
         onChange={(event) => {
           setFilterParam(event.target.value);
@@ -106,7 +113,7 @@ export const DogList = (props) => {
               <div className="dog_name">Name: {dog.name}</div>
               <div className="dog_breed">Breed: {dog.breed}</div>
               <div className="dog_gender">Gender: {dog.gender}</div>
-              <div className="dog_location">location: {dog.location}</div>
+              <div className="dog_location">Location: {dog.location}</div>
               <div className="dog_date">Date: {dog.date}</div>
               <div className="dog_info">Info: {dog.info}</div>
               <div className="currentUser">
@@ -115,7 +122,7 @@ export const DogList = (props) => {
                   {dog.currentUserId}
                 </Link>
               </div>
-              <button
+              <button onChange={showList} className="editDog"
                 onClick={() => {
                   history.push(`/dogs/edit/${dog.id}`);
                 }}
@@ -123,9 +130,12 @@ export const DogList = (props) => {
                 Edit
               </button>
             </section>
+
           );
         })}
+				{show ? <><DogList/></> : <></>}
       </div>
+			</fieldset>
     </>
   );
 };

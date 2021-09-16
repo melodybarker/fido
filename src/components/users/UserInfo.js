@@ -1,20 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory, Link } from "react-router-dom";
+import {DogList} from "../dogs/DogList"
+import {DogContext} from "../dogs/DogProvider"
 import { UserContext } from "./UserProvider";
 
 export const UserInfo = () => {
   const history = useHistory();
   const { users, getUsers, getUserById } = useContext(UserContext);
-
+	const { dogs } = useContext(DogContext)
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({});
-
-  // if (user.currentUserId === 0)
-  // console.log("error")
-
+	const [show, setShow] = useState(false)
   const currentUserId = parseInt(localStorage.getItem("fido_user"));
-
-  // let user = users.find((user) => user.id === currentUserId)
+	const myDogs = dogs.filter(dog => dog.currentUserId === parseInt(currentUserId))
 
   useEffect(() => {
       if (currentUserId) {
@@ -27,27 +25,9 @@ export const UserInfo = () => {
       }
   }, []);
 
-  // useEffect(() => {
-  // 	console.log("UserInfo: useEffect - getUsers")
-  // 	getUsers()
-  // }, [])
-
-  // useEffect(() => {
-  // 	fetch("http://localhost:8088/users")
-  // 	.then(res => res.json().then(y => {
-  // 		setUser(y.user);
-  // 		setLoading(false)
-  // 	}))
-  // }, []);
-
-  // if (loading) {
-  // 	return <div>Loading...</div>
-  // }
-  // if (!user) {
-  // 	return <div>anon user</div>
-  // } else {
-  // return <div>got user</div>
-  // }
+	const showDogs = () => {
+		return (myDogs)
+	}
 
   return (
     <>
@@ -67,6 +47,7 @@ export const UserInfo = () => {
           </button>
         </div>
       </section>
+
     </>
   );
 };

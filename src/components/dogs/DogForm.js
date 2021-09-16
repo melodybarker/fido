@@ -1,12 +1,11 @@
-import React, { useContext, useEffect, useState, Component } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { DogContext } from "./DogProvider";
 import { UserContext } from "../users/UserProvider";
 import { useHistory, useParams } from "react-router";
 
 export const DogForm = () => {
-  const { addDogs, getDogById, updateDog, getDogs } =
-    useContext(DogContext);
-  const {users, getUsers} = useContext(UserContext);
+  const { addDogs, getDogById, updateDog } = useContext(DogContext);
+  const { users, getUsers } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
 
   // setting the date to show MM/DD/YYYY
@@ -24,7 +23,7 @@ export const DogForm = () => {
     gender: "",
     location: "",
     breed: "",
-    date: Date.now(),
+    date: currentDate,
     info: "",
   });
 
@@ -32,17 +31,14 @@ export const DogForm = () => {
   const history = useHistory();
 
   useEffect(() => {
-    getUsers().then(() => {
-      if (dogId) {
-        getDogById(parseInt(dogId))
-				.then((dog) => {
-          setDog(dog);
-          setIsLoading(false);
-        });
-      } else {
+    if (dogId) {
+      getDogById(parseInt(dogId)).then((dog) => {
+        setDog(dog);
         setIsLoading(false);
-      }
-    });
+      });
+    } else {
+      setIsLoading(false);
+    }
   }, []);
 
   const handleControlInputChange = (event) => {
@@ -50,51 +46,51 @@ export const DogForm = () => {
     newDog[event.target.id] = event.target.value;
     setDog(newDog);
   };
+
   const handleSaveDog = (event) => {
     const currentUserId = parseInt(localStorage.getItem("fido_user"));
 
-			if(dogId) {
-				updateDog({
-					id: dog.id,
-					currentUserId: currentUserId,
-					lost: dog.lost,
-					url: dog.url,
-      name: dog.name,
-      gender: dog.gender,
-      location: dog.location,
-      breed: dog.breed,
-      date: currentDate,
-      info: dog.info
-				})
-				.then(() => history.push(`/dog/edit/${dog.id}`))
-				} else {
-    const newDog = {
-      currentUserId: parseInt(dog.currentUserId),
-      lost: dog.lost,
-      url: dog.url,
-      name: dog.name,
-      gender: dog.gender,
-      location: dog.location,
-      breed: dog.breed,
-      date: currentDate,
-      info: dog.info
-    };
-    addDogs(newDog).then(() => {
-      history.push("/dogs");
-    });
-	}
-};
+    if (dogId) {
+      updateDog({
+        id: dog.id,
+        currentUserId: parseInt(dog.currentUserId),
+        lost: dog.lost,
+        url: dog.url,
+        name: dog.name,
+        gender: dog.gender,
+        location: dog.location,
+        breed: dog.breed,
+        date: currentDate,
+        info: dog.info,
+      }).then(() => history.push(`/dogs/edit/${dog.id}`));
+    } else {
+      addDogs({
+        currentUserId: currentUserId,
+        lost: dog.lost,
+        url: dog.url,
+        name: dog.name,
+        gender: dog.gender,
+        location: dog.location,
+        breed: dog.breed,
+        date: currentDate,
+        info: dog.info,
+      }).then(() => history.push("/dogs/search"));
+    }
+  };
 
   return (
     <form className="dogForm">
-      <h3 className="dogForm_title">Post a missing dog!</h3>
+      <h2 className="dogForm_title">Post a missing dog!</h2>
       <fieldset>
         <div className="form-group">
           <label htmlFor="name">Dog Name</label>
           <input
             type="text"
-            required autoFocusclassName="name"
+            required
+            autoFocus
+            className="form-control"
             id="name"
+            name="name"
             placeholder="if unsure, put unknown"
             defaultValue={dog.name}
             onChange={handleControlInputChange}
@@ -103,8 +99,11 @@ export const DogForm = () => {
 
         <div className="form-group">
           <select
-            className="lost"
+            require
+            autoFocus
+            className="form-control"
             id="lost"
+            name="lost"
             defaultValue={dog.lost}
             onChange={handleControlInputChange}
           >
@@ -127,9 +126,12 @@ export const DogForm = () => {
         </div>
 
         <div className="form-group">
-          <select
-            className="breed"
+        <select
+            require
+            autoFocus
+            className="form-control"
             id="breed"
+            name="breed"
             defaultValue={dog.breed}
             onChange={handleControlInputChange}
           >
@@ -171,27 +173,55 @@ export const DogForm = () => {
             onChange={handleControlInputChange}
             className="locationOption"
           >
-            <option value="last seen">Last Seen</option>
-            <option value="Brentwood">Brentwood</option>
-            <option value="Nashville">Nashville</option>
+            <label className="All">Last Seen</label>
+            <option value="Brentwood, TN">Brentwood, TN</option>
+            <option value="Franklin, TN">Franklin, TN</option>
+            <option value="Nashville, TN">Nashville, TN</option>
+            <option value="Spring Hill, TN">Spring Hill, TN</option>
           </select>
         </div>
 
         <div className="form-group">
           <select
-            name="gender"
+            required
+            autoFocus
+            className="form-control"
             id="gender"
+            name="gender"
+            placeholder="gender"
             defaultValue={dog.gender}
-            onChange={handleControlInputChange}
-            className="genderOption"
-          >
+            onChange={handleControlInputChange}>
+            <option value="All">Gender</option>
             <option value="Female">Female</option>
             <option value="Male">Male</option>
           </select>
         </div>
 
-        <button className="saveButton" disabled={isLoading} onClick={e => {e.preventDefault()
-				handleSaveDog()}}>{dogId ? <>save Pet</> : <>Find My Pet</>}</button>
+        <div className="form-group">
+          <label htmlFor="name">Additional Info</label>
+          <input
+            type="text"
+            required
+            autoFocus
+            className="form-control"
+            id="info"
+            name="info"
+            placeholder="give more detail about your dog"
+            defaultValue={dog.info}
+            onChange={handleControlInputChange}
+          />
+        </div>
+
+        <button
+          className="saveButton"
+          disabled={isLoading}
+          onClick={(e) => {
+            e.preventDefault();
+            handleSaveDog();
+          }}
+        >
+          {dogId ? <>Save Pet</> : <>Find My Pet</>}
+        </button>
       </fieldset>
     </form>
   );

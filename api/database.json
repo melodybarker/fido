@@ -61,13 +61,13 @@
     {
       "id": 1,
       "currentUserId": 4,
-      "lost": "lost",
+      "lost": "Lost",
       "url": "https://i.pinimg.com/originals/cd/5c/d8/cd5cd83b62e45497080c01b2ae4f5352.jpg",
       "name": "Brixton",
-      "gender": "male",
+      "gender": "Male",
       "location": "Murfreesboro, TN",
       "breed": "Pit Bull",
-      "date": "08/31/2021",
+      "date": "16/15/2021",
       "info": "Brixton should be wearing a blue collar."
     },
     {
@@ -172,12 +172,14 @@
       "id": 1,
       "currentUserId": 1,
       "userId": 2,
+      "dogId": 2,
       "message": "Hey Joey, my neighbor is missing their Westie and she looks at lot like the one you found. Can we come by to see her?",
       "sendDate": "09/05/2021"
     },
     {
       "id": 2,
       "currentUserId": 1,
+      "dogId": 7,
       "userId": 8,
       "message": "Hello, I found your dog!",
       "sendDate": "08/11/2021"

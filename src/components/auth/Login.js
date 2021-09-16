@@ -22,7 +22,7 @@ export const Login = props => {
     // const existingPasswordCheck = () => {
 	// 	return fetch(`http://localhost:8088/users?password=${password.current.value}`)
 	// 		.then(res => res.json())
-	// 		.then(user => user.length ? user[0] : false)
+	// 		.then(user => user.length ? user.password[0] : false)
     // }
 
     const handleLogin = (e) => {
@@ -42,7 +42,7 @@ export const Login = props => {
 				// 		history.push("/")
 
 			 else {
-                    existDialog.current.showModal()
+        existDialog.current.showModal()
 			}
 				})
 	}
