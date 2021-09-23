@@ -12,7 +12,7 @@
       "name": "Joey Knight",
       "email": "joeyk@gmail.com",
       "password": "123",
-      "locaton": "Franklin, TN"
+      "location": "Franklin, TN"
     },
     {
       "id": 3,
@@ -59,130 +59,134 @@
   ],
   "dogs": [
     {
-      "id": 1,
-      "currentUserId": 4,
+      "userId": 4,
       "lost": "Lost",
       "url": "https://i.pinimg.com/originals/cd/5c/d8/cd5cd83b62e45497080c01b2ae4f5352.jpg",
       "name": "Brixton",
       "gender": "Male",
       "location": "Murfreesboro, TN",
       "breed": "Pit Bull",
-      "date": "16/15/2021",
-      "info": "Brixton should be wearing a blue collar."
+      "date": "9/19/2021",
+      "info": "Brixton should be wearing a blue collar.",
+      "id": 1
     },
     {
-      "id": 2,
-      "currentUserId": 2,
-      "lost": "found",
+      "userId": 2,
+      "lost": "Found",
       "url": "https://i.pinimg.com/originals/00/5c/6a/005c6a58ee2b42467d9f254dbb28328e.jpg",
       "name": "unknown",
-      "gender": "female",
+      "gender": "Female",
       "location": "Franklin, TN",
       "breed": "Westie",
       "date": "07/23/2021",
-      "info": "I currently have her at my house. I found her going through my garden. She's very sweet."
+      "info": "I currently have her at my house. I found her going through my garden. She's very sweet.",
+      "id": 2
     },
     {
-      "id": 3,
-      "currentUserId": 7,
-      "lost": "lost",
+      "userId": 7,
+      "lost": "Lost",
       "url": "https://madisonparktimes.com/Images/Images/10976.jpg",
       "name": "Gypsie",
-      "gender": "female",
+      "gender": "Female",
       "location": "Brentwood, TN",
       "breed": "Blue Heeler",
       "date": "09/2/2021",
-      "info": "Reward $500. Please find my girl!"
+      "info": "Reward $500. Please find my girl!",
+      "id": 3
     },
     {
-      "id": 4,
-      "currentUserId": 3,
-      "lost": "found",
+      "userId": 3,
+      "lost": "Found",
       "url": "https://www.goldenretrieverforum.com/attachments/image-jpg.519521/",
       "name": "Buddy",
-      "gender": "male",
+      "gender": "Male",
       "location": "Nashville, TN",
       "breed": "Golden Retriever",
       "date": "08/12/2021",
-      "info": "Friendly boy! I found him in our front yard."
+      "info": "Friendly boy! I found him in our front yard.",
+      "id": 4
     },
     {
-      "id": 5,
-      "currentUserId": 1,
-      "lost": "found",
+      "userId": 1,
+      "lost": "Found",
       "url": "https://i.pinimg.com/originals/3d/3c/30/3d3c303e5c551deed4f95c7ac5131286.jpg",
       "name": "unknown",
-      "gender": "male",
+      "gender": "Male",
       "location": "Spring Hill, TN",
       "breed": "Dalmatian",
       "date": "07/03/2021",
-      "info": "I found this cutie at Spring Hill Bark Park."
+      "info": "I found this cutie at Spring Hill Bark Park.",
+      "id": 5
     },
     {
-      "id": 6,
-      "currentUserId": 6,
-      "lost": "lost",
+      "userId": 6,
+      "lost": "Lost",
       "url": "https://s3-prod.dogtopia.com/wp-content/uploads/sites/89/2021/04/GoldenDoodle_whatjunoboutadoodle.jpg",
       "name": "Frankie",
-      "gender": "male",
+      "gender": "Male",
       "location": "Franklin, TN",
       "breed": "Poodle",
       "date": "08/07/2021",
-      "info": "He is part golden retriever and poodle mix. He escaped in our Willow Springs neighborhood."
+      "info": "He is part golden retriever and poodle mix. He escaped in our Willow Springs neighborhood.",
+      "id": 6
     },
     {
-      "id": 7,
-      "currentUserId": 8,
-      "lost": "reunited",
+      "userId": 8,
+      "lost": "Reunited",
       "url": "https://media.npr.org/assets/img/2021/04/27/prancer_wide-db59609b5bd96c9e56e4dfe32d198461197880c2.jpg?s=1400",
       "name": "Chi",
-      "gender": "male",
+      "gender": "Male",
       "location": "Murfreesboro, TN",
       "breed": "Chihuahua",
       "date": "06/05/2021",
-      "info": "Careful, he likes to bite."
+      "info": "Careful, he likes to bite.",
+      "id": 7
     },
     {
-      "id": 8,
-      "currentUserId": 1,
-      "lost": "reunited",
+      "userId": 1,
+      "lost": "Reunited",
       "url": "https://i.pinimg.com/originals/f9/56/90/f95690937e7c39994a87fe541b7715a0.jpg",
       "name": "unkown",
-      "gender": "male",
+      "gender": "Male",
       "location": "Spring Hill, TN",
       "breed": "Jack Russell Terrier",
       "date": "08/25/2021",
-      "info": "10 months old jack russell terrier. Has one big, brown spot on his back."
+      "info": "10 months old jack russell terrier. Has one big, brown spot on his back.",
+      "id": 8
     },
     {
-      "id": 9,
-      "currentUserId": 5,
-      "lost": "lost",
+      "userId": 5,
+      "lost": "Lost",
       "url": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F8d179147-5427-4dd2-b7d3-58bb8aceb2c9.jpg?fit=scale-down&source=next&width=700",
       "name": "Princess",
-      "gender": "female",
+      "gender": "Female",
       "location": "Nashville, TN",
       "breed": "Grey Hound",
       "date": "05/29/2020",
-      "info": "She was stolen off my property. Reward $300 if found!"
+      "info": "She was stolen off my property. Reward $300 if found!",
+      "id": 9
+    },
+    {
+      "userId": 1,
+      "lost": "Found",
+      "url": "https://petsplus.ae/wp-content/uploads/2020/05/dog1.jpg",
+      "name": "Melody",
+      "gender": "Female",
+      "location": "Clarksville, TN",
+      "breed": "Bernese Mountain Dog",
+      "date": "9/20/2021",
+      "info": "hobo",
+      "id": 10
     }
   ],
   "messages": [
     {
-      "id": 1,
-      "currentUserId": 1,
-      "userId": 2,
+      "userId": 1,
+      "usersId": 2,
       "dogId": 2,
       "message": "Hey Joey, my neighbor is missing their Westie and she looks at lot like the one you found. Can we come by to see her?",
-      "sendDate": "09/05/2021"
-    },
-    {
-      "id": 2,
-      "currentUserId": 1,
-      "dogId": 7,
-      "userId": 8,
-      "message": "Hello, I found your dog!",
-      "sendDate": "08/11/2021"
+      "sendDate": "09/05/2021",
+      "id": 1
     }
   ]
 }
