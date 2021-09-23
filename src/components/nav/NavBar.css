@@ -6,19 +6,19 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #023047;
 }
 
 .navbar__item {
   flex-basis: 20%;
   list-style-type: none;
-  background-color: #96b7e0;
+  background-color: #023047;
 }
 
 .navbar__link {
   text-decoration: none;
   display: block;
-  color: white;
+  color: #ffb703;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;

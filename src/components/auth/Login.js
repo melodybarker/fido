@@ -19,11 +19,11 @@ export const Login = props => {
             .then(res => res.json())
             .then(user => user.length ? user[0] : false)
     }
-    // const existingPasswordCheck = () => {
-	// 	return fetch(`http://localhost:8088/users?password=${password.current.value}`)
-	// 		.then(res => res.json())
-	// 		.then(user => user.length ? user.password[0] : false)
-    // }
+    const existingPasswordCheck = () => {
+		return fetch(`http://localhost:8088/users?password=${password.current.value}`)
+			.then(res => res.json())
+			.then(user => user.length ? user[0] : false)
+    }
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -33,19 +33,17 @@ export const Login = props => {
                 if (exists) {
                     localStorage.setItem("fido_user", exists.id)
                     history.push("/")
-                }
+                }})
 
-				// existingPasswordCheck()
-				// .then(exists => {
-				// 	if (exists) {
-				// 		localStorage.setItem("fido_customer", exists.id)
-				// 		history.push("/")
-
-			 else {
+				existingPasswordCheck()
+				.then(exists => {
+					if (exists) {
+						localStorage.setItem("fido_user", exists.id)
+						history.push("/")
+          } else {
         existDialog.current.showModal()
-			}
-				})
-	}
+			}})
+    }
 
     return (
       <>
@@ -62,16 +60,27 @@ export const Login = props => {
                     <fieldset>
                       <button onClick={showList}>Search all missing dogs</button>
                       </fieldset>
-
+                    <h2>Sign in:</h2>
                     <fieldset>
-                        <label htmlFor="inputEmail"> Email address </label>
+                        <label htmlFor="inputEmail"><h3> Email </h3></label>
 
                         <input ref={email} type="email"
                             id="email"
                             className="form-control"
-                            placeholder="Email address"
+                            placeholder=""
                             required autoFocus />
                     </fieldset>
+
+                    <fieldset>
+                        <label htmlFor="inputEmail"><h3> Password </h3></label>
+
+                        <input ref={password} type="password"
+                            id="password"
+                            className="form-control"
+                            placeholder=""
+                            required autoFocus />
+                    </fieldset>
+
                     <fieldset>
                         <button type="submit">
                             Sign in

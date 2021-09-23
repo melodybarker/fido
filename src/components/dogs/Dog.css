@@ -1,7 +1,9 @@
-.DogListForm {
-  background-image: url("");
+/* CSS for DogList */
+.DogForm {
+  font: 13px Verdana;
+  background-image: url("https://i.pinimg.com/originals/93/3d/7f/933d7fb937868122f365540c2ce3f4aa.jpg");
   background-attachment: fixed;
-  background-color: #184e;
+  background-color: rgb(121, 160, 245);
 }
 
 .DogList {
@@ -10,21 +12,21 @@
   justify-content: space-between;
 }
 .dogPost {
-  flex-basis: 26%;
-  margin: 1.5rem;
+  flex-basis: 24%;
+  margin: 2rem;
   padding: 1rem;
   width: 100px;
-  border: 1px solid #d9ed92;
-  border-radius: 1rem;
-  inline-size: 100px;
-  background-color: #52b69a;
-  box-shadow: 0 0 10px rgb(218, 216, 216);
+  border: 2px solid rgb(207, 250, 51);
+  border-radius: 2rem;
+  inline-size: 90px;
+  background-color:#ff9f44;
+  box-shadow: 0 0 40px black ;
 }
 .dog_url {
 
-  min-height: 50%;
+  min-height: 40%;
   width: 100%;
-  border-radius:120px 20px 120px 20px;
+  border-radius:30px 30px 30px 30px;
   object-fit: cover;
   object-position: center;
 }

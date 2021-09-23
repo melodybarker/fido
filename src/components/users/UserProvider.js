@@ -24,7 +24,7 @@ export const UserProvider = (props) => {
 	}
 
 // edit user's information
-	const updateUser = user => {
+	const messageUser = user => {
 		return fetch(`http://localhost"8088/users/${user.id}`, {
 			method: "PUT",
 			header: {
@@ -42,7 +42,7 @@ export const UserProvider = (props) => {
 
 	return (
 		<UserContext.Provider value={{
-			users, setUsers, getUsers, addUsers, updateUser, getUserById, loading, setLoading
+			users, setUsers, getUsers, addUsers, messageUser, getUserById, loading, setLoading
 		}}>
 			{props.children}
 		</UserContext.Provider>

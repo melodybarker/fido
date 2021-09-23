@@ -9,10 +9,9 @@ export const DogForm = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   // setting the date to show MM/DD/YYYY
-  const dateObj = new Date();
-  const month = dateObj.getUTCDate() + 1;
-  const day = dateObj.getUTCDate();
-  const year = dateObj.getUTCFullYear();
+  const month = new Date().getMonth() + 1;
+  const day = new Date().getDate();
+  const year = new Date().getFullYear();
   const currentDate = month + "/" + day + "/" + year;
 
   const [dog, setDog] = useState({
@@ -23,7 +22,7 @@ export const DogForm = () => {
     gender: "",
     location: "",
     breed: "",
-    date: currentDate,
+    date: Date.now(),
     info: "",
   });
 
@@ -39,7 +38,7 @@ export const DogForm = () => {
     } else {
       setIsLoading(false);
     }
-  }, []);
+  }, [dogId]);
 
   const handleControlInputChange = (event) => {
     const newDog = { ...dog };
@@ -48,8 +47,9 @@ export const DogForm = () => {
   };
 
   const handleSaveDog = (event) => {
-    const currentUserId = parseInt(localStorage.getItem("fido_user"));
+    const userId = parseInt(localStorage.getItem("fido_user"));
 
+    // this function passes through an existing dog and it's ID to edit/update dog's information
     if (dogId) {
       updateDog({
         id: dog.id,
@@ -64,8 +64,9 @@ export const DogForm = () => {
         info: dog.info,
       }).then(() => history.push(`/dogs/edit/${dog.id}`));
     } else {
+     // this function invokes addDog to pass in a new dog
       addDogs({
-        currentUserId: currentUserId,
+        userId: userId,
         lost: dog.lost,
         url: dog.url,
         name: dog.name,
@@ -107,6 +108,7 @@ export const DogForm = () => {
             defaultValue={dog.lost}
             onChange={handleControlInputChange}
           >
+          <label htmlFor="missing">Missing Status</label>
             <option value="Missing Status">Missing Status</option>
             <option value="Lost">Lost</option>
             <option value="Found">Found</option>
@@ -173,11 +175,45 @@ export const DogForm = () => {
             onChange={handleControlInputChange}
             className="locationOption"
           >
-            <label className="All">Last Seen</label>
-            <option value="Brentwood, TN">Brentwood, TN</option>
+            <label className="location">Last Seen</label>
+            <option value="All">Location</option>
+            <option value="Ashland, TN">Ashland, TN</option>
+            <option value="Asheville, TN ">Asheville, TN</option>
+            <option value="Brentwood, T">Brentwood, TN</option>
+            <option value="Chattanooga, TN">Chattanooga, TN</option>
+            <option value="Clarksville, TN">Clarksville, TN</option>
+            <option value="Cookville, TN">Cookville, TN</option>
+            <option value="Crossville, TN">Crossville, TM</option>
+            <option value="Dickson, TN">Dickson, TN</option>
+            <option value="Dunlap, TN">Dunlap, TN</option>
+            <option value="Fairview, TN">Fairview, TN</option>
             <option value="Franklin, TN">Franklin, TN</option>
+            <option value="Gallatin, TN">Gallatin, TN</option>
+            <option value="Gatlinburg,TN">Gatlinburg, TN</option>
+            <option value="Germantown, TN">Germantown, TN</option>
+            <option value="Hendersonville, TN">Hendersonville, TN</option>
+            <option value="Jackson, TN">Jackson, TN</option>
+            <option value="Johnson City, TN">Johnson City, TN</option>
+            <option value="Kingsport, TN">Kingsport, TN</option>
+            <option value="Knoxville, TN">Knoxville, TN</option>
+            <option value="La Vergne, TN">La Vergne, TN</option>
+            <option value="Lynchburg, TN">Lynchburg, TN</option>
+            <option value="Maryville, TN">Maryville, TN</option>
+            <option value="Memphis, TN">Memphis, TN</option>
+            <option value="Morristown, TN">Morristown, TN</option>
+            <option value="Mt. Juliet, TN">Mt. Juliet, TN</option>
+            <option value="Murfreesbor, TN">Murfreesboro, TN</option>
             <option value="Nashville, TN">Nashville, TN</option>
+            <option value="Nolensville, TN">Nolensville, TN</option>
+            <option value="Oak Ridge, TN">Oak Ridge, TN</option>
+            <option value="Ooltewah, TN">Ooltewah, TN</option>
+            <option value="Paris, TN">Paris, TN</option>
+            <option value="Pigeon Forge, TN">Pigeon Forge, TN</option>
+            <option value="Rogersville, TN">Rogersville, TN</option>
+            <option value="Signal Mountain, TN">Signal Mountain, TN</option>
+            <option value="Smyrna, TN">Smyrna, TN</option>
             <option value="Spring Hill, TN">Spring Hill, TN</option>
+            <option value="Tullahoma, TN">Tullahoma, TN</option>
           </select>
         </div>
 
