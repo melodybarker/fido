@@ -25,10 +25,13 @@ export const ApplicationViews = () => {
             <Route path="/dogs/edit/:dogId(\d+)">
               <DogForm />
             </Route>
-            <Route path="/dogs/search">
+            <Route exact path="/dogs">
               <DogList />
             </Route>
             <Route path="/messages/form">
+              <MessageForm />
+            </Route>
+            <Route path="/messages/user/:dogId(\d+)">
               <MessageForm />
             </Route>
           </MessageProvider>

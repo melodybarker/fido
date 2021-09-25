@@ -2,13 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { MessageContext } from "./MessageProvider";
 import { UserContext } from "../users/UserProvider";
 import { DogContext } from "../dogs/DogProvider";
-import { DogList } from "../dogs/DogList";
 import { useHistory, useParams } from "react-router-dom";
 
 export const MessageForm = () => {
-  const { saveMessage, messageUser, addMessages } = useContext(MessageContext);
-  const { dogs, getDogs, setSearch, searchDogs } = useContext(DogContext);
+  const { messages, saveMessage, messageUser, addMessages } = useContext(MessageContext);
+  const { dogs, getDogs, getDogById, setSearch, searchDogs } = useContext(DogContext);
   const { users, getUsers, getUserById } = useContext(UserContext);
+  const history = useHistory();
+  const { usersId } = useParams();
   const [isLoading, setIsLoading] = useState(true);
 
   // setting the date to show MM/DD/YYYY
@@ -17,59 +18,64 @@ export const MessageForm = () => {
   const year = new Date().getFullYear();
   const currentDate = month + "/" + day + "/" + year;
 
-  const [messages, setMessages] = useState({
+  const [dog, setDogs] = useState({
     userId: 0,
     usersId: 0,
     dogId: 0,
-    body: "",
-    sendDate: Date.now(),
-  });
-
-  const history = useHistory();
-  const { userId } = useParams();
-
-  useEffect(() => {
-    getUsers().then(getDogs)
-    .then(() => {
-    if (userId) {
-      getUserById(parseInt(userId)).then((user) => {
-        setMessages(user)
-        setIsLoading(false)
-      })
-    } else {
-      setIsLoading(false)
-    }
+    message: "",
+    sendDate: currentDate
   })
-  }, [userId]);
+
+  const {dogId} = useParams()
+
+  // reach out to the world and get customers state and location state on initialization. If dogId is in the URL, then getDogById
+  useEffect(() => {
+    getUsers().then(getDogs).then(() => {
+      if (dogId) {
+        getDogById(parseInt(dogId))
+        .then(dog => {
+          setDogs(dog)
+          setIsLoading(false)
+        })
+      } else {
+        setIsLoading(false)
+      }
+    })
+    }, [])
 
   const inputChange = (event) => {
     const newMessage = { ...messages };
     newMessage[event.target.id] = event.target.value;
-    setMessages(newMessage);
+    setDogs(newMessage);
   };
   const handleMessageUser = (event) => () => {
-    const usersId = parseInt(users.Id);
-    const dogId = parseInt(dogs.id);
+    const usersId = parseInt(messages.usersId);
+    const dogId = parseInt(messages.dogId);
     const userId = parseInt(localStorage.getItem("fido_user"));
 
-    if (userId) {
+    if (dogId) {
       messageUser ({
-        userId: parseInt(messages.userId),
-        usersId: parseInt(messages.usersId),
+        userId: parseInt(userId),
+        usersId: messages.user.name,
         dogId: parseInt(messages.dogId),
         message: messages.message,
         sendDate: currentDate,
-      }).then(() => history.push(`/messages/edit/${users.id}`));
+      }).then(() => history.push(`/messages/user/${dog.id}`));
     } else {
-    addMessages({
+    const newMessage = {
       userId: userId,
       usersId: usersId,
       dogId: dogId,
       message: messages.message,
-      date: currentDate,
-    }).then(() => history.push("/messages"))
+      sendDate: currentDate
     }
-  };
+    addMessages(newMessage)
+    .then(() => {
+      history.push("/messages")
+    })
+  }
+}
+
 
   return (
     <>
@@ -93,39 +99,38 @@ export const MessageForm = () => {
         </fieldset>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="subject">Subject: </label>
+            <label htmlFor="dogId">Dog ID: </label>
             <input
-              type="text"
-              id="subject"
-              name="subject"
+              id="dogId"
+              name="dogId"
               required
               autoFocus
               className="form-control"
               placeholder=""
-              defaultValue={messages.subject}
-              onChange={inputChange}
-            />
+              value={messages.dogId}
+              onChange={inputChange}/>
+
           </div>
         </fieldset>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="body">Message: </label>
+            <label htmlFor="message">Message: </label>
             <input
               type="text"
-              id="body"
-              name="body"
+              id="message"
+              className="message"
               required
               autoFocus
               className="form-control"
               placeholder="Write message here..."
-              defaultValue={messages.body}
+              defaultValue={messages.message}
               onChange={inputChange}
             />
           </div>
         </fieldset>
         <button
           className="btn btn-primary"
-          onClick={handleMessageUser(dogs.id)}
+          onClick={() => {handleMessageUser(messages.id)}}
         >
           Send Message
         </button>

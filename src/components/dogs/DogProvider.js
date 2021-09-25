@@ -34,13 +34,21 @@ export const DogProvider = (props) => {
 	}
 
 	const getDogById = (dogId) => {
-		return fetch(`http://localhost:8088/dogs/${dogId}`)
+		return fetch(`http://localhost:8088/dogs?{dogId}&_expand=user`)
 		.then(res => res.json())
 	}
 
+  const releaseDog = dogId => {
+    return fetch(`http://localhost:8088/dogs/${dogId}`, {
+        method: "DELETE"
+    })
+        .then(getDogs)
+
+  }
+
 	return (
 		<DogContext.Provider value={{
-			dogs, getDogs, addDogs, updateDog, getDogById
+			dogs, getDogs, addDogs, updateDog, getDogById, releaseDog
 		}}>
 			{props.children}
 		</DogContext.Provider>

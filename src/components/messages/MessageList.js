@@ -15,21 +15,23 @@ export const MessageList = () => {
   return (
     <>
       <section className="MessageForm">
-        <label className="MessageTitle">Messages</label>
-        <button onClick={() => history.push("/messages/form")}>
-          Send A Message
-        </button>
+        <label className="MessageTitle"><h3>Messages</h3></label>
+        <button className="messageButton" onClick={() => history.push("/messages/form")}>
+      Send A Message
+    </button>
         <div className="messagesReceived">
           {messages.map((message) => {
             return (
               <div
                 className="message"
                 key={message.id}
-                id={`message--${message.id}`}
-              >
-                <div className="messageRecipient">
+                id={`message--${message.id}`}>
+                <div className="messageRecipient" value={message.users}>
                   <b>Recipient: </b>
-                  {message.userId}
+                  {message.usersId}
+                </div>
+                <div className="messageDogId"><b>Dog ID# </b>
+                {message.dogId}
                 </div>
                 <div className="messageBody">
                   <i>{message.message}</i>

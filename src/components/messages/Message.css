@@ -1,3 +1,30 @@
+.messages {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .MessageForm {
-  background-color:#8ecae6 ;
+  border: 1px solid black;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0.25rem 0.25rem 0.5rem rgb(143, 143, 143);
+  margin: 2% 20%;
+  flex-basis: 50%;
+}
+
+.messageForm {
+  border: 1px solid black;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0.25rem 0.25rem 0.5rem rgb(143, 143, 143);
+  margin: 2% 20%;
+  flex-basis: 50%;
+}
+
+.messageButton {
+  border-radius: 20%;
+}
+.usersId {
+  margin: 25rem;
 }
