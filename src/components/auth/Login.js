@@ -55,7 +55,7 @@ export const Login = props => {
 
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1>Fido Alert!</h1>
+                    <h1>Fido Alert!</h1><h3> Let us help find your dog!</h3>
 
                     <fieldset>
                       <button onClick={showList}>Search all missing dogs</button>

@@ -12,14 +12,20 @@ export const UserInfo = () => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({});
   const [show, setShow] = useState(false);
-  const currentUserId = parseInt(localStorage.getItem("fido_user"));
+  const userId = parseInt(localStorage.getItem("fido_user"));
   const myDogs = dogs.filter(
-    (dog) => dog.currentUserId === parseInt(currentUserId)
+    (dog) => dog.userId === parseInt(userId)
   );
 
+  const showList = () => {
+    if (userId === parseInt(localStorage.getItem("fido_user"))) {
+      setShow(!show);
+    }
+  };
+
   useEffect(() => {
-    if (currentUserId) {
-      getUserById(parseInt(currentUserId)).then((user) => {
+    if (userId) {
+      getUserById(parseInt(userId)).then((user) => {
         setUser(user);
         setLoading(false);
       });
@@ -35,19 +41,12 @@ export const UserInfo = () => {
   return (
     <>
       <section className="users">
-        <label className="user-group">Account Info</label>
-        <div className="user_name">Name: {user.name}</div>
-        <div className="user_email">Email: {user.email}</div>
-        <div className="user_location">Location: {user.location}</div>
-        <button
-          className="editUser"
-          onClick={() => {
-            history.push(`/users/edit/${user.id}`);
-          }}
-        >
-          Edit Info
-        </button>
+        <label className="user-group"><b>Account Info</b></label>
+        <div className="user_name"><b>Name: </b>{user.name}</div>
+        <div className="user_email"><b>Email: </b>{user.email}</div>
+        <div className="user_location"><b>Location: </b>{user.location}</div>
       </section>
+      {show ? <><DogList/></> : <></>}
     </>
   );
 };

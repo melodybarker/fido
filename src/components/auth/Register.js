@@ -6,7 +6,8 @@ export const Register = (props) => {
     const firstName = useRef()
     const lastName = useRef()
     const email = useRef()
-    const verifyPassword = useRef()
+    const password = useRef()
+    const location = useRef()
     const conflictDialog = useRef()
     const history = useHistory()
 
@@ -15,12 +16,17 @@ export const Register = (props) => {
             .then(res => res.json())
             .then(user => !!user.length)
     }
-
+    const existingPasswordCheck = () => {
+      return fetch(`http://localhost:8088/users?password=${password.current.value}`)
+        .then(res => res.json())
+        .then(user => !!user.length)
+      }
     const handleRegister = (e) => {
         e.preventDefault()
 
 
         existingUserCheck()
+        existingPasswordCheck()
             .then((userExists) => {
                 if (!userExists) {
                     fetch("http://localhost:8088/users", {
@@ -30,14 +36,16 @@ export const Register = (props) => {
                         },
                         body: JSON.stringify({
                             email: email.current.value,
-                            name: `${firstName.current.value} ${lastName.current.value}`
+                            name: `${firstName.current.value} ${lastName.current.value}`,
+                            password: password.current.value,
+                            location: location.current.value
                         })
                     })
                         .then(res => res.json())
-                        .then(createdUser => {
-                            if (createdUser.hasOwnProperty("id")) {
-                                localStorage.setItem("fido_user", createdUser.id)
-                                history.push("/")
+                        .then(user => {
+                            if (user.hasOwnProperty("id")) {
+                                localStorage.setItem("fido_user", user.id)
+                                history.push("/users")
                             }
                         })
                 }
@@ -69,6 +77,14 @@ export const Register = (props) => {
                 <fieldset>
                     <label htmlFor="inputEmail"> Email address </label>
                     <input ref={email} type="email" name="email" className="form-control" placeholder="Email address" required />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="inputPassword"> Password </label>
+                    <input ref={password} type="password" name="password" className="form-control" placeholder="Password" required />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="inputLocation"> Location </label>
+                    <input ref={location} type="location" name="location" className="form-control" placeholder="location" required />
                 </fieldset>
                 <fieldset>
                     <button type="submit"> Sign in </button>

@@ -6,20 +6,21 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #023047;
+  background-color: rgb(59, 28, 212);
 }
 
 .navbar__item {
   flex-basis: 20%;
   list-style-type: none;
-  background-color: #023047;
+  background-color: rgb(1, 67, 165);
 }
 
 .navbar__link {
   text-decoration: none;
   display: block;
-  color: #ffb703;
+  color: #f78902;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  font-family: impact;
 }

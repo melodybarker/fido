@@ -5,8 +5,86 @@ import { MessageContext } from "../messages/MessageProvider";
 import { Link, useHistory } from "react-router-dom";
 import "./Dog.css";
 
+export const cities = [
+  "Filter by Location",
+  "Ashland, TN",
+  "Asheville, TN",
+  "Brentwood, TN",
+  "Chattanooga, TN",
+  "Clarksville, TN",
+  "Cookville, TN",
+  "Crossville, TN",
+  "Dickson, TN",
+  "Dunlap, TN",
+  "Fairview, TN",
+  "Franklin, TN",
+  "Gallatin, TN",
+  "Gatlinburg, TN",
+  "Germantown, TN",
+  "Hendersonville, TN",
+  "Jackson, TN",
+  "Johnson, TN",
+  "Kingsport, TN",
+  "Knoxville, TN",
+  "La Vergne, TN",
+  "Lynchburg, TN",
+  "Maryville, TN",
+  "Memphis, TN",
+  "Morristown, TN",
+  "Mt Juliet, TN",
+  "Murfreesboro, TN",
+  "Nashville, TN",
+  "Nolensville, TN",
+  "Oak Ridge, TN",
+  "Ooltewah, TN",
+  "Paris, TN",
+  "Pigeon, TN",
+  "Rogersville, TN",
+  "Signal, TN",
+  "Smyrna, TN",
+  "Spring Hill, TN",
+  "Tullahoma, TN",
+];
+export const breeds = [
+  "Filter by Breed",
+  "Unknown",
+  "Australian Shepard",
+  "Basset Hound",
+  "Beagle",
+  "Bernese Mountain Dog",
+  "Blue Heeler",
+  "Border Collie",
+  "Boston Terrier",
+  "Bulldog",
+  "Chihuahua",
+  "Chow Chow",
+  "Cocker Spaniel",
+  "Dachshund",
+  "Dalmatian",
+  "German Shepherd",
+  "Golden Retriever",
+  "Great Dane",
+  "Grey Hound",
+  "Husky",
+  "Irish Setter",
+  "Jack Russell Terrier",
+  "Maltese",
+  "Mix Breed",
+  "Pit Bull",
+  "Poodle",
+  "Pug",
+  "Rottweiler",
+  "Westie",
+];
+
+export const genders = [
+  "Filter by Gender",
+  "Female",
+  "Male"
+  ];
+
 export const DogList = (props) => {
-  const { dogs, getDogs } = useContext(DogContext);
+  const { dogs, getDogs, releaseDog } = useContext(DogContext);
   const [dog, setDogs] = useState([]);
   // const { addMessages } = useContext(MessageContext);
   const [users, setUsers] = useState([]);
@@ -37,6 +115,11 @@ export const DogList = (props) => {
   useEffect(() => {
     setFilteredDogs(dogs);
   }, [dogs]);
+
+  const reunitedDog = (e) => {
+    if (e.target.value === "Reunited")
+    <style>color: green</style>
+  }
 
   const handleSearch = (e) => {
     setSearchDog(e.target.value);
@@ -92,86 +175,23 @@ export const DogList = (props) => {
   const year = new Date().getFullYear();
   const currentDate = month + "/" + day + "/" + year;
 
-  const cities = [
-    "Filter by Location",
-    "Ashland, TN",
-    "Asheville, TN",
-    "Brentwood, TN",
-    "Chattanooga, TN",
-    "Clarksville, TN",
-    "Cookville, TN",
-    "Crossville, TN",
-    "Dickson, TN",
-    "Dunlap, TN",
-    "Fairview, TN",
-    "Franklin, TN",
-    "Gallatin, TN",
-    "Gatlinburg, TN",
-    "Germantown, TN",
-    "Hendersonville, TN",
-    "Jackson, TN",
-    "Johnson, TN",
-    "Kingsport, TN",
-    "Knoxville, TN",
-    "La Vergne, TN",
-    "Lynchburg, TN",
-    "Maryville, TN",
-    "Memphis, TN",
-    "Morristown, TN",
-    "Mt Juliet, TN",
-    "Murfreesboro, TN",
-    "Nashville, TN",
-    "Nolensville, TN",
-    "Oak Ridge, TN",
-    "Ooltewah, TN",
-    "Paris, TN",
-    "Pigeon, TN",
-    "Rogersville, TN",
-    "Signal, TN",
-    "Smyrna, TN",
-    "Spring, TN",
-    "Tullahoma, TN",
-  ];
-  const breeds = [
-    "Filter by Breed",
-    "Unknown",
-    "Australian Shepard",
-    "Basset Hound",
-    "Beagle",
-    "Bernese Mountain Dog",
-    "Blue Heeler",
-    "Border Collie",
-    "Boston Terrier",
-    "Bulldog",
-    "Chihuahua",
-    "Chow Chow",
-    "Cocker Spaniel",
-    "Dachshund",
-    "Dalmatian",
-    "German Shepherd",
-    "Golden Retriever",
-    "Great Dane",
-    "Grey Hound",
-    "Husky",
-    "Irish Setter",
-    "Jack Russell Terrier",
-    "Maltese",
-    "Mix Breed",
-    "Pit Bull",
-    "Poodle",
-    "Pug",
-    "Rottweiler",
-    "Westie",
-  ];
-  const genders = [
-  "Filter by Gender",
-  "Female",
-  "Male"
-  ];
+  const handleRelease = id => () => {
+    releaseDog(id)
+      .then(() => {
+        history.push("/dogs")
+      })
+  }
 
   return (
     <>
-      <fieldset className="DogFilter">
+      <fieldset className="Filter">
+      <div onChange={handleGender} className="DogFilter" value={genders}>
+          <select id="DogGender" onChange={handleGender} className="DogFilter">
+            {genders.map((gender) => {
+              return <option value={gender}>{gender}</option>;
+            })}
+          </select>
+        </div>
         <div onChange={handleLocation} className="DogFilter" value={cities}>
           <select id="DogLocation" onChange={handleLocation} className="DogFilter">
             {cities.map((city) => {
@@ -195,13 +215,6 @@ export const DogList = (props) => {
             })}
           </select>
         </div>
-          <div onChange={handleGender} className="DogGender" value={genders}>
-          <select id="DogGender" onChange={handleGender} className="DogFilter">
-            {genders.map((gender) => {
-              return <option value={gender}>{gender}</option>;
-            })}
-          </select>
-        </div>
       </fieldset>
       <fieldset className="DogForm">
         <h3 className="dogTitle">Search Missing Dogs</h3>
@@ -209,7 +222,7 @@ export const DogList = (props) => {
           {filteredDogs.map((dog) => {
             return (
               <section className="dogPost" key={dog.id} id={`dog--${dog.id}`}>
-                <div className="dog_lost">{dog.lost}</div>
+                <div className="dog_lost" onChange={reunitedDog}>{dog.lost}</div>
                 <img
                   className="dog_url"
                   src={dog.url}
@@ -225,9 +238,9 @@ export const DogList = (props) => {
                 <div className="dog_info">Info: {dog.info}</div>
                 <div className="currentUser">
                   message user:
-                  <Link onClick={() => history.push("/messages/form")}>
+                  <button onClick={() => {history.push(`/messages/user/${dog.id}`)}}>
                     {dog.user.name}
-                  </Link>
+                  </button>
                 </div>
                 <button
                   onChange={showList}
@@ -236,8 +249,11 @@ export const DogList = (props) => {
                     history.push(`/dogs/edit/${dog.id}`);
                   }}
                 >
-                  Edit
+                  Edit Post
                 </button>
+              <button onClick={handleRelease(dog.id)}>
+                Remove Dog
+              </button>
               </section>
             );
           })}

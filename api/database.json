@@ -66,7 +66,7 @@
       "gender": "Male",
       "location": "Murfreesboro, TN",
       "breed": "Pit Bull",
-      "date": "9/19/2021",
+      "date": "9/23/2021",
       "info": "Brixton should be wearing a blue collar.",
       "id": 1
     },
@@ -165,18 +165,6 @@
       "date": "05/29/2020",
       "info": "She was stolen off my property. Reward $300 if found!",
       "id": 9
-    },
-    {
-      "userId": 1,
-      "lost": "Found",
-      "url": "https://petsplus.ae/wp-content/uploads/2020/05/dog1.jpg",
-      "name": "Melody",
-      "gender": "Female",
-      "location": "Clarksville, TN",
-      "breed": "Bernese Mountain Dog",
-      "date": "9/20/2021",
-      "info": "hobo",
-      "id": 10
     }
   ],
   "messages": [

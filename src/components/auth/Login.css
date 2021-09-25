@@ -1,5 +1,4 @@
 
-
 fieldset {
   min-width: 0;
   padding: 1rem 0;
@@ -15,7 +14,7 @@ fieldset {
 
 .form--login > fieldset > input[type="email"],
 .form--login > fieldset > input[type="password"] {
-  width: 20em;
+  width: 15rem;
 }
 
 .label--login {
@@ -25,9 +24,9 @@ fieldset {
 
 .form-control {
   display: block;
-  width: 94%;
-  height: calc(1.5em + .75rem + 2px);
-  padding: .375rem .75rem;
+  width: 90%;
+  height: calc(1em + .50rem + 2px);
+  padding: 0rem 1rem;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -42,11 +41,11 @@ fieldset {
 
 .container--login {
   text-align: center;
+
 }
 
 .form--login {
-
-  background-position: right;
+  background-position: 14rem -3rem;
   background-image: url(logo.png);
   z-index: 1;
   min-height: 25rem;
