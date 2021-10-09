@@ -4,10 +4,9 @@ import {DogContext} from "../dogs/DogProvider"
 export const MessageContext = createContext();
 export const MessageProvider = (props) => {
   const [messages, setMessages] = useState([]);
-  const {dog, dogs} = useContext
 
   const getMessages = () => {
-    return fetch("http://localhost:8088/messages")
+    return fetch("http://localhost:8088/messages?_expand=users&&_expand=user")
       .then((res) => res.json())
       .then(setMessages);
   };
@@ -24,13 +23,13 @@ export const MessageProvider = (props) => {
   };
 
   // send message to specific user
-  const messageUser = (dog) => {
-    return fetch(`http://localhost:8088/messages/user/${dog.id}_expand=user`, {
+  const messageUser = (usersId) => {
+    return fetch(`http://localhost:8088/messages/${usersId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(dog),
+      body: JSON.stringify(usersId),
     }).then(getMessages);
   };
 

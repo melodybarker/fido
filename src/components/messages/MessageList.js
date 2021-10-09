@@ -1,16 +1,25 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MessageContext } from "./MessageProvider";
-import { useHistory, useParams } from "react-router-dom";
+import { DogContext } from "../dogs/DogProvider"
+import { UserContext } from "../users/UserProvider"
+import { useHistory } from "react-router-dom";
 import "./Message.css";
 
-export const MessageList = () => {
+export const MessageList = (props) => {
   const history = useHistory();
-  const { messages, getMessages } = useContext(MessageContext);
+  const [ showReceived, setShowReceived ] = useState(false)
+  const [ showSent, setShowSent ] = useState(false)
 
-  useEffect(() => {
-    console.log("MessageList: useEffect - getMessages");
-    getMessages();
-  }, []);
+  const showReceivedMessages = () => {
+    setShowReceived(!showReceived)
+    setShowSent(false)
+  }
+
+  const showSentMessages = () => {
+    setShowSent(!showSent)
+    setShowReceived(false)
+  }
+  const userId = parseInt(localStorage.getItem("fido_user"));
 
   return (
     <>
@@ -19,19 +28,23 @@ export const MessageList = () => {
         <button className="messageButton" onClick={() => history.push("/messages/form")}>
       Send A Message
     </button>
-        <div className="messagesReceived">
-          {messages.map((message) => {
-            return (
+    <button className="messageButton" onClick={() => showReceivedMessages() }>
+      Received Messages
+    </button>
+    <button className="messageButton" onClick={() => showSentMessages() }>
+      Sent Messages
+    </button>
+        <div className="messagesReceived" hidden={showReceived ? "" : "hidden"} >
+          {props.messages.map((message) => {
+            if (message.usersId === userId) {
+              return (
               <div
                 className="message"
-                key={message.id}
-                id={`message--${message.id}`}>
-                <div className="messageRecipient" value={message.users}>
-                  <b>Recipient: </b>
-                  {message.usersId}
-                </div>
-                <div className="messageDogId"><b>Dog ID# </b>
-                {message.dogId}
+                key={message.usersId}
+                id={`message--${message.usersId}`}>
+                <div className="messageRecipient" value={message.usersId}>
+                  <b>From: </b>
+                  {message.user.name}
                 </div>
                 <div className="messageBody">
                   <i>{message.message}</i>
@@ -42,6 +55,32 @@ export const MessageList = () => {
                 </div>
               </div>
             );
+            }
+          })}
+        </div>
+
+        <div className="messagesReceived" hidden={showSent ? "" : "hidden"} >
+          {props.messages.map((message) => {
+            if (message.userId === userId) {
+              return (
+              <div
+                className="message"
+                key={message.usersId}
+                id={`message--${message.usersId}`}>
+                <div className="messageRecipient" value={message.usersId}>
+                  <b>To: </b>
+                  {message.users.name}
+                </div>
+                <div className="messageBody">
+                  <i>{message.message}</i>
+                </div>
+                <div className="messageDate">
+                  <b>Date Sent: </b>
+                  {message.sendDate}
+                </div>
+              </div>
+            );
+            }
           })}
         </div>
       </section>

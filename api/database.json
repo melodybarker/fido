@@ -55,6 +55,27 @@
       "email": "ayeh@gmail.com",
       "password": "123",
       "location": "Spring Hill, TN"
+    },
+    {
+      "email": "buddyl@gmail.com",
+      "name": "Buddy Love",
+      "password": "123",
+      "location": "Smyrna, TN",
+      "id": 9
+    },
+    {
+      "email": "garyp@gmail.com",
+      "name": "Gary Plum",
+      "password": "123",
+      "location": "Chattanooga, TN",
+      "id": 10
+    },
+    {
+      "email": "izzieb@gmail.com",
+      "name": "Izzie Bean",
+      "password": "123",
+      "location": "Knoxville, TN",
+      "id": 11
     }
   ],
   "dogs": [
@@ -71,6 +92,7 @@
       "id": 1
     },
     {
+      "id": 2,
       "userId": 2,
       "lost": "Found",
       "url": "https://i.pinimg.com/originals/00/5c/6a/005c6a58ee2b42467d9f254dbb28328e.jpg",
@@ -78,9 +100,8 @@
       "gender": "Female",
       "location": "Franklin, TN",
       "breed": "Westie",
-      "date": "07/23/2021",
-      "info": "I currently have her at my house. I found her going through my garden. She's very sweet.",
-      "id": 2
+      "date": "10/5/2021",
+      "info": "I currently have her at my house. I found her going through my garden. She's very sweet."
     },
     {
       "userId": 7,
@@ -95,6 +116,7 @@
       "id": 3
     },
     {
+      "id": 4,
       "userId": 3,
       "lost": "Found",
       "url": "https://www.goldenretrieverforum.com/attachments/image-jpg.519521/",
@@ -102,9 +124,8 @@
       "gender": "Male",
       "location": "Nashville, TN",
       "breed": "Golden Retriever",
-      "date": "08/12/2021",
-      "info": "Friendly boy! I found him in our front yard.",
-      "id": 4
+      "date": "9/29/2021",
+      "info": "Friendly boy! I found him in our front yard."
     },
     {
       "userId": 1,
@@ -155,6 +176,42 @@
       "id": 8
     },
     {
+      "userId": 9,
+      "lost": "Lost",
+      "url": "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F47%2F2020%2F11%2F10%2Frottweiler-sunning-in-grass-220034514-2000.jpg",
+      "name": "Rot",
+      "gender": "Female",
+      "location": "Nashville, TN",
+      "breed": "Rottweiler",
+      "date": "09/29/2020",
+      "info": "She will bite your head off.",
+      "id": 9
+    },
+    {
+      "userId": 10,
+      "lost": "Found",
+      "url": "https://external-preview.redd.it/e3sKF5tgTDyhOJJH7eUcDpnkyZdreUsPLe1VXDlGzYk.jpg?width=960&crop=smart&auto=webp&s=a28359ec664099cfae5448ddc6b21efa78ad57dd",
+      "name": "Lady",
+      "gender": "Female",
+      "location": "Ashville, TN",
+      "breed": "Irish Setter",
+      "date": "07/26/2020",
+      "info": "Help me find my baby!!",
+      "id": 10
+    },
+    {
+      "userId": 11,
+      "lost": "Reunited",
+      "url": "https://i.pinimg.com/originals/ef/be/49/efbe495373cc594c64a060c914af2f64.png",
+      "name": "Sassy",
+      "gender": "Female",
+      "location": "Knoxville, TN",
+      "breed": "Pug",
+      "date": "10/05/2020",
+      "info": "Will pay if you find her!",
+      "id": 11
+    },
+    {
       "userId": 5,
       "lost": "Lost",
       "url": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F8d179147-5427-4dd2-b7d3-58bb8aceb2c9.jpg?fit=scale-down&source=next&width=700",
@@ -164,17 +221,59 @@
       "breed": "Grey Hound",
       "date": "05/29/2020",
       "info": "She was stolen off my property. Reward $300 if found!",
-      "id": 9
+      "id": 12
+    },
+    {
+      "userId": 5,
+      "lost": "Lost",
+      "url": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F8d179147-5427-4dd2-b7d3-58bb8aceb2c9.jpg?fit=scale-down&source=next&width=700",
+      "name": "Princess",
+      "gender": "Female",
+      "location": "Nashville, TN",
+      "breed": "Grey Hound",
+      "date": "05/29/2020",
+      "info": "She was stolen off my property. Reward $300 if found!",
+      "id": 13
+    },
+    {
+      "userId": 5,
+      "lost": "Lost",
+      "url": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F8d179147-5427-4dd2-b7d3-58bb8aceb2c9.jpg?fit=scale-down&source=next&width=700",
+      "name": "Princess",
+      "gender": "Female",
+      "location": "Nashville, TN",
+      "breed": "Grey Hound",
+      "date": "05/29/2020",
+      "info": "She was stolen off my property. Reward $300 if found!",
+      "id": 14
+    },
+    {
+      "userId": 5,
+      "lost": "Lost",
+      "url": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F8d179147-5427-4dd2-b7d3-58bb8aceb2c9.jpg?fit=scale-down&source=next&width=700",
+      "name": "Princess",
+      "gender": "Female",
+      "location": "Nashville, TN",
+      "breed": "Grey Hound",
+      "date": "05/29/2020",
+      "info": "She was stolen off my property. Reward $300 if found!",
+      "id": 15
     }
   ],
   "messages": [
     {
       "userId": 1,
       "usersId": 2,
-      "dogId": 2,
       "message": "Hey Joey, my neighbor is missing their Westie and she looks at lot like the one you found. Can we come by to see her?",
-      "sendDate": "09/05/2021",
+      "sendDate": "9/5/2021",
       "id": 1
+    },
+    {
+      "userId": 2,
+      "usersId": 1,
+      "message": "Hi Melody, absolutely! What's a good time for you?",
+      "sendDate": "9/5/2021",
+      "id": 2
     }
   ]
 }

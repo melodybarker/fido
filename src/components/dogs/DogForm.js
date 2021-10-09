@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import { DogContext } from "./DogProvider";
-import {genders, breeds, cities} from "./DogList"
+import {genders, breeds, locations} from "./DogList"
 import { UserContext } from "../users/UserProvider";
 import { useHistory, useParams } from "react-router";
 import "./Dog.css"
 
 export const DogForm = () => {
-  const { addDogs, getDogById, updateDog } = useContext(DogContext);
+  const { dogs, addDogs, getDogById, updateDog } = useContext(DogContext);
   const { users, getUsers } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
   const breed = breeds
-  const city = cities
+  const location  = locations
   const gender = genders
 
   // setting the date to show MM/DD/YYYY
@@ -45,7 +45,7 @@ export const DogForm = () => {
   //   } else {
   //     setIsLoading(false);
   //   }
-  // }, [dogId]);
+  // }, []);
 
   useEffect(() => {
     getUsers().then(() => {
@@ -78,7 +78,7 @@ export const DogForm = () => {
     if (dogId) {
       updateDog({
         id: dog.id,
-        userId: parseInt(userId),
+        userId: parseInt(dog.userId),
         lost: dog.lost,
         url: dog.url,
         name: dog.name,
@@ -87,7 +87,7 @@ export const DogForm = () => {
         breed: dog.breed,
         date: currentDate,
         info: dog.info,
-      }).then(() => history.push(`/dogs/edit/${dog.id}`));
+      }).then(() => history.push(`/dogs`));
     } else {
      // this function invokes addDog to pass in a new dog as arugment. changes the url and display new list
       const newDog = {
@@ -122,13 +122,12 @@ export const DogForm = () => {
             id="name"
             name="name"
             placeholder="if unsure, put unknown"
-            defaultValue={dog.name}
             onChange={handleControlInputChange}
-          />
+            value={dog.name}
+/>
         </div>
         </fieldset>
         <fieldset>
-        <label htmlFor="missing">Missing Status</label>
         <div className="form-group">
           <select
             require
@@ -145,18 +144,20 @@ export const DogForm = () => {
             <option value="Reunited">Reunited</option>
           </select>
         </div>
-
+        </fieldset>
+        <fieldset>
         <div className="form-group">
-          <label htmlFor="url">Add A Picture</label>
           <input
             type="text"
             className="url"
             id="url"
-            defaultValue={dog.url}
+            placeholder="Add a picture"
+            value={dog.url}
             onChange={handleControlInputChange}
           />
         </div>
-
+        </fieldset>
+        <fieldset>
         <div className="form-group">
         <select
             require
@@ -169,14 +170,13 @@ export const DogForm = () => {
           >
             {breed.map(b => {
               return (
-                <>
-                  <option value={b}>{b}</option>
-                </>
+                  <option value={b} key={b.id}>{b}</option>
               )
             })}
           </select>
         </div>
-
+        </fieldset>
+        <fieldset>
         <div className="form-group">
           <select
           require autoFocus
@@ -185,16 +185,17 @@ export const DogForm = () => {
             defaultValue={dog.location}
             onChange={handleControlInputChange}
             className="form-control"
-          > {city.map(c => {
+          > {location.map(l => {
             return (
                 <>
-                  <option value={c}>{c}</option>
+                  <option key={l.id} value={l.id}>{l}</option>
                 </>
               );
           })}
           </select>
         </div>
-
+        </fieldset>
+        <fieldset>
         <div className="form-group">
           <select
             required
@@ -207,29 +208,28 @@ export const DogForm = () => {
             onChange={handleControlInputChange}>
             {gender.map(g => {
               return (
-                <>
-                <option value={g}>{g}</option>
-                </>
+                <option value={g} key={g}>{g}</option>
               )
             })}
           </select>
         </div>
-
+        </fieldset>
+        <fieldset>
         <div className="form-group">
-          <label htmlFor="info">Additional Info</label>
           <input
-            type="textarea"
+            type="text"
             required
             autoFocus
             className="form-control"
             id="info"
             className="info"
-            placeholder=""
-            defaultValue={dog.info}
+            placeholder="Add additional info..."
+            value={dog.info}
             onChange={handleControlInputChange}
           />
         </div>
-
+        </fieldset>
+        <fieldset>
         <button
           className="saveButton"
           disabled={isLoading}

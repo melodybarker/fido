@@ -16,17 +16,11 @@ export const Register = (props) => {
             .then(res => res.json())
             .then(user => !!user.length)
     }
-    const existingPasswordCheck = () => {
-      return fetch(`http://localhost:8088/users?password=${password.current.value}`)
-        .then(res => res.json())
-        .then(user => !!user.length)
-      }
     const handleRegister = (e) => {
         e.preventDefault()
 
 
         existingUserCheck()
-        existingPasswordCheck()
             .then((userExists) => {
                 if (!userExists) {
                     fetch("http://localhost:8088/users", {
@@ -45,7 +39,7 @@ export const Register = (props) => {
                         .then(user => {
                             if (user.hasOwnProperty("id")) {
                                 localStorage.setItem("fido_user", user.id)
-                                history.push("/users")
+                                history.push("/")
                             }
                         })
                 }

@@ -34,7 +34,7 @@ export const DogProvider = (props) => {
 	}
 
 	const getDogById = (dogId) => {
-		return fetch(`http://localhost:8088/dogs?{dogId}&_expand=user`)
+		return fetch(`http://localhost:8088/dogs/${dogId}`)
 		.then(res => res.json())
 	}
 

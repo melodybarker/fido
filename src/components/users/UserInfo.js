@@ -1,42 +1,48 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory, Link } from "react-router-dom";
-import { DogList } from "../dogs/DogList";
 import { DogContext } from "../dogs/DogProvider";
+import { MessageContext } from "../messages/MessageProvider"
+import { MessageList } from "../messages/MessageList"
 import { UserContext } from "./UserProvider";
 import "./User.css";
 
-export const UserInfo = () => {
+export const UserInfo = (props) => {
   const history = useHistory();
   const { users, getUsers, getUserById } = useContext(UserContext);
+  const { messages, getMessages } = useContext(MessageContext)
   const { dogs } = useContext(DogContext);
-  const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({});
-  const [show, setShow] = useState(false);
   const userId = parseInt(localStorage.getItem("fido_user"));
-  const myDogs = dogs.filter(
-    (dog) => dog.userId === parseInt(userId)
-  );
+  // Empty list to set filtered dogs and messages per User
+  const [ myDogs, setMyDogs ] = useState([])
+  const [ myMessages, setMyMessages ] = useState([])
 
-  const showList = () => {
-    if (userId === parseInt(localStorage.getItem("fido_user"))) {
-      setShow(!show);
-    }
-  };
+  const filterDogs = () => {
+    const filteredDogList = dogs.filter(
+        (dog) => dog.userId === parseInt(userId)
+      );
 
+    setMyDogs(filteredDogList)
+  }
+
+  const filterMessages = () => {
+    console.log(messages)
+    const filteredMessageList = messages.filter(
+        (message) => message.userId === userId || message.usersId === userId
+      );
+    setMyMessages(filteredMessageList)
+  }
   useEffect(() => {
     if (userId) {
-      getUserById(parseInt(userId)).then((user) => {
+      getUserById(userId).then((user) => {
         setUser(user);
-        setLoading(false);
       });
-    } else {
-      setLoading(false);
     }
+
+    getMessages().then(filterMessages)
+    filterDogs()
   }, []);
 
-  const showDogs = () => {
-    return myDogs;
-  };
 
   return (
     <>
@@ -45,8 +51,9 @@ export const UserInfo = () => {
         <div className="user_name"><b>Name: </b>{user.name}</div>
         <div className="user_email"><b>Email: </b>{user.email}</div>
         <div className="user_location"><b>Location: </b>{user.location}</div>
+        <MessageList messages={myMessages} />
       </section>
-      {show ? <><DogList/></> : <></>}
+
     </>
   );
 };

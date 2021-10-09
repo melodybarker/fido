@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { DogContext } from "./DogProvider";
 import { UserContext } from "../users/UserProvider";
 import { MessageContext } from "../messages/MessageProvider";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams} from "react-router-dom";
 import "./Dog.css";
 
-export const cities = [
+export const locations = [
   "Filter by Location",
   "Ashland, TN",
   "Asheville, TN",
@@ -99,13 +99,8 @@ export const DogList = (props) => {
   const [show, setShow] = useState(false);
   const history = useHistory();
   const userId = parseInt(localStorage.getItem("fido_user"));
-
+  const {usersId} = useParams()
   // show/hide list for login
-  const showList = () => {
-    if (userId === parseInt(dog.userId)) {
-      setShow(!show);
-    }
-  };
 
   useEffect(() => {
     console.log("DogList: useEffect - getDogs");
@@ -116,14 +111,7 @@ export const DogList = (props) => {
     setFilteredDogs(dogs);
   }, [dogs]);
 
-  const reunitedDog = (e) => {
-    if (e.target.value === "Reunited")
-    <style>color: green</style>
-  }
 
-  const handleSearch = (e) => {
-    setSearchDog(e.target.value);
-  };
   const handleBreed = (e) => {
     let DogBreed = [...filteredDogs];
     DogBreed = dogs.filter(
@@ -192,12 +180,12 @@ export const DogList = (props) => {
             })}
           </select>
         </div>
-        <div onChange={handleLocation} className="DogFilter" value={cities}>
+        <div onChange={handleLocation} className="DogFilter" value={locations}>
           <select id="DogLocation" onChange={handleLocation} className="DogFilter">
-            {cities.map((city) => {
+            {locations.map((location) => {
               return (
                 <>
-                  <option value={city}>{city}</option>
+                  <option value={location}>{location}</option>
                 </>
               );
             })}
@@ -222,14 +210,14 @@ export const DogList = (props) => {
           {filteredDogs.map((dog) => {
             return (
               <section className="dogPost" key={dog.id} id={`dog--${dog.id}`}>
-                <div className="dog_lost" onChange={reunitedDog}>{dog.lost}</div>
+                <div className="dog_lost" >{dog.lost}</div>
                 <img
                   className="dog_url"
                   src={dog.url}
                   width="300px"
                   height="350px"
                 />
-                <div className="dog_id">ID: {dog.id}</div>
+
                 <div className="dog_name">Name: {dog.name}</div>
                 <div className="dog_breed">Breed: {dog.breed}</div>
                 <div className="dog_gender">Gender: {dog.gender}</div>
@@ -238,20 +226,20 @@ export const DogList = (props) => {
                 <div className="dog_info">Info: {dog.info}</div>
                 <div className="currentUser">
                   message user:
-                  <button onClick={() => {history.push(`/messages/user/${dog.id}`)}}>
+                  <b><Link className="userPost" to={`/messages/dog/${userId}`}>
                     {dog.user.name}
-                  </button>
+                  </Link></b>
                 </div>
                 <button
-                  onChange={showList}
                   className="editDog"
                   onClick={() => {
                     history.push(`/dogs/edit/${dog.id}`);
                   }}
+                  hidden={dog.userId === userId ? "" : "hidden"}
                 >
                   Edit Post
                 </button>
-              <button onClick={handleRelease(dog.id)}>
+              <button onClick={handleRelease(dog.id)} hidden={dog.userId === userId ? "" : "hidden"}>
                 Remove Dog
               </button>
               </section>

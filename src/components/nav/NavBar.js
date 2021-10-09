@@ -22,9 +22,6 @@ export const NavBar = (props) => {
                 <Link className="navbar__link" to="/dogs">Search Lost/Found</Link>
             </li>
             <li className="navbar__item">
-                <Link className="navbar__link" to="/reunions">Reunions</Link>
-            </li>
-            <li className="navbar__item">
                 <a className="navbar__link" onClick={runLogout}>Logout</a>
             </li>
         </ul>
