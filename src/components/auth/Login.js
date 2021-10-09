@@ -29,20 +29,12 @@ export const Login = props => {
         e.preventDefault()
 
         existingUserCheck()
+        existingPasswordCheck()
             .then(exists => {
                 if (exists) {
                     localStorage.setItem("fido_user", exists.id)
                     history.push("/")
                 }})
-
-				existingPasswordCheck()
-				.then(exists => {
-					if (exists) {
-						localStorage.setItem("fido_user", exists.id)
-						history.push("/")
-          } else {
-        existDialog.current.showModal()
-			}})
     }
 
     return (

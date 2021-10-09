@@ -9,7 +9,7 @@ export const MessageForm = () => {
   const { dogs, getDogs, getDogById, setSearch, searchDogs } = useContext(DogContext);
   const { users, getUsers, getUserById } = useContext(UserContext);
   const history = useHistory();
-  const { usersId } = useParams();
+  const { userId } = useParams();
   const [isLoading, setIsLoading] = useState(true);
 
   // setting the date to show MM/DD/YYYY
@@ -18,23 +18,19 @@ export const MessageForm = () => {
   const year = new Date().getFullYear();
   const currentDate = month + "/" + day + "/" + year;
 
-  const [dog, setDogs] = useState({
-    userId: 0,
+  const [message, setMessages] = useState({
     usersId: 0,
-    dogId: 0,
     message: "",
-    sendDate: currentDate
+    sendDate: Date.now()
   })
-
-  const {dogId} = useParams()
 
   // reach out to the world and get customers state and location state on initialization. If dogId is in the URL, then getDogById
   useEffect(() => {
-    getUsers().then(getDogs).then(() => {
-      if (dogId) {
-        getDogById(parseInt(dogId))
-        .then(dog => {
-          setDogs(dog)
+    getUsers().then(() => {
+      if (userId) {
+        getUserById(parseInt(userId))
+        .then(user => {
+          setMessages(user)
           setIsLoading(false)
         })
       } else {
@@ -43,35 +39,37 @@ export const MessageForm = () => {
     })
     }, [])
 
+
   const inputChange = (event) => {
+    // when object or array state is changed, always create a copy
+    // and then set state
     const newMessage = { ...messages };
+    // message is an object with properties. set property to new value
     newMessage[event.target.id] = event.target.value;
-    setDogs(newMessage);
+    // updates stte
+    setMessages(newMessage);
   };
   const handleMessageUser = (event) => () => {
-    const usersId = parseInt(messages.usersId);
-    const dogId = parseInt(messages.dogId);
+    const usersId = parseInt(message.usersId)
     const userId = parseInt(localStorage.getItem("fido_user"));
 
-    if (dogId) {
+    if (usersId) {
       messageUser ({
-        userId: parseInt(userId),
-        usersId: messages.user.name,
-        dogId: parseInt(messages.dogId),
-        message: messages.message,
+        userId: userId,
+        usersId: parseInt(message.usersId),
+        message: message.message,
         sendDate: currentDate,
-      }).then(() => history.push(`/messages/user/${dog.id}`));
+      }).then(() => history.push("/dogs"));
     } else {
     const newMessage = {
       userId: userId,
       usersId: usersId,
-      dogId: dogId,
-      message: messages.message,
+      message: message.message,
       sendDate: currentDate
     }
     addMessages(newMessage)
     .then(() => {
-      history.push("/messages")
+      history.push("/")
     })
   }
 }
@@ -99,21 +97,6 @@ export const MessageForm = () => {
         </fieldset>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="dogId">Dog ID: </label>
-            <input
-              id="dogId"
-              name="dogId"
-              required
-              autoFocus
-              className="form-control"
-              placeholder=""
-              value={messages.dogId}
-              onChange={inputChange}/>
-
-          </div>
-        </fieldset>
-        <fieldset>
-          <div className="form-group">
             <label htmlFor="message">Message: </label>
             <input
               type="text"
@@ -129,12 +112,11 @@ export const MessageForm = () => {
           </div>
         </fieldset>
         <button
-          className="btn btn-primary"
-          onClick={() => {handleMessageUser(messages.id)}}
-        >
-          Send Message
+          className="btn btn-primary" disabled={isLoading}
+          onClick={handleMessageUser(users.id)}>
+          {userId ? <>Message User</> : <>Send Message</>}
         </button>
-        <button onClick={() => history.push("/")}>Back</button>
+        <button onClick={() => history.push("/dogs")}>Back</button>
       </form>
     </>
   );

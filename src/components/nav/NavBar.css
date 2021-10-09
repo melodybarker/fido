@@ -1,16 +1,17 @@
 .navbar {
   display: flex;
   flex-wrap: nowrap;
-  justify-content: left;
+  justify-content: center;
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: rgb(59, 28, 212);
+  background-image: static;
+
 }
 
 .navbar__item {
-  flex-basis: 20%;
+  flex-basis: 50%;
   list-style-type: none;
   background-color: rgb(1, 67, 165);
 }
@@ -20,7 +21,14 @@
   display: block;
   color: #f78902;
   text-align: center;
-  padding: 14px 16px;
+  padding: 16px;
   text-decoration: none;
   font-family: impact;
+  cursor: pointer;
+}
+.navbar__link:hover {
+  font-size:105%;
+  color: #f2f2f2;
+  padding: 14px 16px;
+  text-decoration: none;
 }
