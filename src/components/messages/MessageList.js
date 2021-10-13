@@ -8,6 +8,7 @@ import "./Message.css";
 export const MessageList = (props) => {
   const history = useHistory();
   const [ showReceived, setShowReceived ] = useState(false)
+  const {releaseMessage} = useContext(MessageContext)
   const [ showSent, setShowSent ] = useState(false)
 
   const showReceivedMessages = () => {
@@ -20,6 +21,14 @@ export const MessageList = (props) => {
     setShowReceived(false)
   }
   const userId = parseInt(localStorage.getItem("fido_user"));
+
+  const handleRelease = id => () => {
+    releaseMessage(id)
+      .then(() => {
+        history.push("/")
+      })
+  }
+
 
   return (
     <>
@@ -53,6 +62,7 @@ export const MessageList = (props) => {
                   <b>Date Sent: </b>
                   {message.sendDate}
                 </div>
+
               </div>
             );
             }

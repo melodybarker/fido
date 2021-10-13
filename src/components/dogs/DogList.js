@@ -210,7 +210,7 @@ export const DogList = (props) => {
           {filteredDogs.map((dog) => {
             return (
               <section className="dogPost" key={dog.id} id={`dog--${dog.id}`}>
-                <div className="dog_lost" >{dog.lost}</div>
+                <div className="dog_lost"><b>{dog.lost}</b></div>
                 <img
                   className="dog_url"
                   src={dog.url}
@@ -218,15 +218,15 @@ export const DogList = (props) => {
                   height="350px"
                 />
 
-                <div className="dog_name">Name: {dog.name}</div>
-                <div className="dog_breed">Breed: {dog.breed}</div>
-                <div className="dog_gender">Gender: {dog.gender}</div>
-                <div className="dog_location">Location: {dog.location}</div>
-                <div className="dog_date">Date: {dog.date}</div>
-                <div className="dog_info">Info: {dog.info}</div>
+                <div className="dog_name"><b>Name: </b>{dog.name}</div>
+                <div className="dog_breed"><b>Breed: </b>{dog.breed}</div>
+                <div className="dog_gender"><b>Gender: </b>{dog.gender}</div>
+                <div className="dog_location"><b>Location: </b>{dog.location}</div>
+                <div className="dog_date"><b>Date: </b>{dog.date}</div>
+                <div className="dog_info"><b>Info: </b>{dog.info}</div>
                 <div className="currentUser">
-                  message user:
-                  <b><Link className="userPost" to={`/messages/dog/${userId}`}>
+                  <b>message user: </b>
+                  <b><Link className="userPost" to={`/messages/dog/${dog.id}`}>
                     {dog.user.name}
                   </Link></b>
                 </div>

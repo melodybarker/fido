@@ -46,6 +46,7 @@ export const UserInfo = (props) => {
 
   return (
     <>
+    <fieldset className="usersInfo">
       <section className="users">
         <label className="user-group"><b>Account Info</b></label>
         <div className="user_name"><b>Name: </b>{user.name}</div>
@@ -53,7 +54,7 @@ export const UserInfo = (props) => {
         <div className="user_location"><b>Location: </b>{user.location}</div>
         <MessageList messages={myMessages} />
       </section>
-
+    </fieldset>
     </>
   );
 };
