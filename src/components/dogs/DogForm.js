@@ -3,6 +3,7 @@ import { DogContext } from "./DogProvider";
 import {genders, breeds, locations} from "./DogList"
 import { UserContext } from "../users/UserProvider";
 import { useHistory, useParams } from "react-router";
+import "./logo.png"
 import "./Dog.css"
 
 export const DogForm = () => {
@@ -110,7 +111,7 @@ export const DogForm = () => {
 
   return (
     <form className="dropdown">
-      <h2 className="dogForm_title">Post a missing dog!</h2>
+      <center><img src=""/><h2 className="dogForm_title">Post a missing dog!</h2></center>
       <fieldset>
         <div className="form-group">
           <label htmlFor="name">Dog Name</label>
@@ -149,7 +150,7 @@ export const DogForm = () => {
         <div className="form-group">
           <input
             type="text"
-            className="url"
+            className="form-control"
             id="url"
             placeholder="Add a picture"
             value={dog.url}
@@ -164,7 +165,6 @@ export const DogForm = () => {
             autoFocus
             className="form-control"
             id="breed"
-            className="breed"
             defaultValue={dog.breed}
             onChange={handleControlInputChange}
           >
@@ -180,7 +180,7 @@ export const DogForm = () => {
         <div className="form-group">
           <select
           require autoFocus
-            className="location"
+            className="form-control"
             id="location"
             defaultValue={dog.location}
             onChange={handleControlInputChange}
@@ -202,7 +202,6 @@ export const DogForm = () => {
             autoFocus
             className="form-control"
             id="gender"
-            className="gender"
             placeholder="gender"
             defaultValue={dog.gender}
             onChange={handleControlInputChange}>
@@ -222,7 +221,6 @@ export const DogForm = () => {
             autoFocus
             className="form-control"
             id="info"
-            className="info"
             placeholder="Add additional info..."
             value={dog.info}
             onChange={handleControlInputChange}

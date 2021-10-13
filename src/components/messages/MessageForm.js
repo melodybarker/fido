@@ -4,7 +4,7 @@ import { UserContext } from "../users/UserProvider";
 import { DogContext } from "../dogs/DogProvider";
 import { useHistory, useParams } from "react-router-dom";
 
-export const MessageForm = () => {
+export const MessageForm = (props) => {
   const { messages, saveMessage, messageUser, addMessages } = useContext(MessageContext);
   const { dogs, getDogs, getDogById, setSearch, searchDogs } = useContext(DogContext);
   const { users, getUsers, getUserById } = useContext(UserContext);
@@ -56,14 +56,14 @@ export const MessageForm = () => {
     if (usersId) {
       messageUser ({
         userId: userId,
-        usersId: parseInt(message.usersId),
+        usersId: props.usersId,
         message: message.message,
         sendDate: currentDate,
       }).then(() => history.push("/dogs"));
     } else {
     const newMessage = {
       userId: userId,
-      usersId: usersId,
+      usersId: props.usersId,
       message: message.message,
       sendDate: currentDate
     }
@@ -90,7 +90,7 @@ export const MessageForm = () => {
               autoFocus
               className="form-control"
               placeholder=""
-              value={messages.usersId}
+              value={props.usersName}
               onChange={inputChange}
             />
           </div>
@@ -113,10 +113,10 @@ export const MessageForm = () => {
         </fieldset>
         <button
           className="btn btn-primary" disabled={isLoading}
-          onClick={handleMessageUser(users.id)}>
+          onClick={handleMessageUser()}>
           {userId ? <>Message User</> : <>Send Message</>}
         </button>
-        <button onClick={() => history.push("/dogs")}>Back</button>
+        <button onClick={() => history.push("/")}>Back</button>
       </form>
     </>
   );

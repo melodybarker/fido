@@ -2,7 +2,21 @@
   padding: 2rem;
   border-radius: 0.5rem;
   box-shadow: 0.25rem 0.25rem 0.5rem rgb(143, 143, 143);
-  margin: 5% 25%;
+  margin: 5% 25% 25% 25%;
+  background-color: rgba(240, 248, 255, 0.808);
+  flex-basis: 20%;
+}
+
+.usersList {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0.25rem 0.25rem 0.5rem rgb(143, 143, 143);
+  margin: 5% 5% ;
+  background-color: rgba(240, 248, 255, 0.733);
   flex-basis: 50%;
+}
+.usersInfo {
+  background-image: url("https://cdn2.vectorstock.com/i/1000x1000/23/31/cartoon-breed-of-dogs-seamless-pattern-background-vector-21932331.jpg");
+
 }
 

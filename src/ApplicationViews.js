@@ -30,7 +30,6 @@ export const ApplicationViews = () => {
             </Route>
             <Route path="/messages/form">
               <MessageSearch />
-              <MessageForm />
             </Route>
             <Route exact path="/messages/dog/:usersId(\d+)">
               <MessageForm />
